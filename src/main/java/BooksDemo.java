@@ -1,10 +1,12 @@
 import commands.commands;
 import exception.AutherNotFaundException;
 import model.*;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import storage.AutherStorage;
 import storage.BooksStorage;
 import storage.UserStorage;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class BooksDemo implements commands {
@@ -91,11 +93,25 @@ public class BooksDemo implements commands {
                 case ADD_AUTHOR:
                     addauther();
                     break;
+                case DOWNLOAD_AUTHORS_EXCEL:
+                    downloadAuthorsExcel();
+                    break;
 
                 default:
                     System.out.println("invalid command");
             }
         }
+    }
+
+    private static void downloadAuthorsExcel() {
+        System.out.println("please input file location");
+        String fileDir = scanner.nextLine();
+        try {
+            autherStorage.writeAuthersToExcel(fileDir);
+        } catch (IOException  | InvalidFormatException e ) {
+            e.printStackTrace();
+        }
+
     }
 
     private static void register() {
@@ -156,6 +172,9 @@ public class BooksDemo implements commands {
                     break;
                 case PRINT_ALL_AUTHORS:
                     autherStorage.print();
+                    break;
+                case DOWNLOAD_AUTHORS_EXCEL:
+                    downloadAuthorsExcel();
                     break;
 
                 default:
