@@ -4,7 +4,7 @@ import jdbcexample.manager.UserManager;
 import jdbcexample.model.User;
 
 import java.sql.SQLException;
-import java.util.LinkedList;
+
 import java.util.List;
 
 

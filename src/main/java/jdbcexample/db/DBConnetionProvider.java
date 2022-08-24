@@ -23,6 +23,7 @@ public class DBConnetionProvider {
     }
 
     public static DBConnetionProvider getInstance() {
+
         return instance;
     }
 
